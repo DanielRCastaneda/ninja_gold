@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Ninja Gold</title>
+</head>
+<body style="margin: 0 auto; width: 1080px;">
+    <div class="d-flex justify-content-center bg-dark text-white bg-opacity-75">
+    <div class="mb-4">
+        <H1 style="color: white;height: 50px;"> Ninja Gold </H1>
+    </div>
+    </div>
+        <h3 class="mt-5"> Gold : {{gold}}</h3>
+    <div class="d-flex mt-5 mb-3" style="color:white;">
+        <div style="flex: 1;text-align: center"  class="bg-dark bg-opacity-75 mx-3 py-4 ">
+        <h4>Farm</h4>
+            <div class="mb-3">(earns 10-20 golds)</div>
+        <form action="/process" method="post">
+            <input type="hidden" name="building" value="farm" />
+            <input type="submit" value="Find Gold!"/>
+        </form>
+    </div>
+    <div style="flex: 1;text-align: center" class="bg-dark bg-opacity-75  mx-3 py-4">
+        <h4>House</h4>
+            <div class="mb-3">(earns 2-5 golds)</div>
+        <form action="/process" method="post">
+            <input type="hidden" name="building" value="house" />
+            <input type="submit" value="Find Gold!"/>
+        </form>
+    </div>
+    <div style="flex: 1; text-align: center;"  class="bg-dark bg-opacity-75  mx-3 py-4">
+        <h4>Cave</h4>
+            <div class="mb-3">(earns 5-10) golds</div>
+        <form action="/process" method="post">
+            <input type="hidden" name="building" value="cave" />
+            <input type="submit" value="Find Gold!"/>
+        </form>
+    </div>
+    <div style="flex: 1;text-align: center " class="bg-dark bg-opacity-75  py-4 mx-3 justify-content-center">
+        <h4>Casino</h4>
+            <div class="mb-3" >(earns/takes 0-50 golds)</div>
+        <form action="/process" method="post">
+            <input type="hidden" name="building" value="casino" />
+            <input type="submit" value="Find Gold!"/>
+        </form>
+        </div>
+    </div>
+    <div style="display: flex; justify-content: center ; margin-top: 30px;">
+    <form action="/reset" method="post">
+        <input type="submit" value="RESET">
+    </form>
+    </div>
+    <div class="activity">
+        {% if activity %}
+        <ul>
+            {% for act in activity %}
+                {% if '..' in act %}
+                    <li style="color: red">{{act}}</li>
+                {% endif%}
+                {% if '!' in act %}
+                    <li style="color: green;">{{act}}</li>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        </ul>
+    </div>
+</body>
+</html>
